@@ -17,3 +17,11 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.664302, 0 )
 
 [node name="Camera" type="Camera" parent="Pivot"]
 current = true
+
+[node name="Hold" type="Position3D" parent="Pivot/Camera"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00969166, -1.74672 )
+
+[node name="StaticBody" type="StaticBody" parent="Pivot/Camera/Hold"]
+
+[node name="PinJoint" type="PinJoint" parent="Pivot/Camera/Hold"]
+nodes/node_a = NodePath("../StaticBody")
