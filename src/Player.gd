@@ -51,6 +51,23 @@ func attach_to_joint(collider):
 	var picked_object = collider.get_path()
 	joint.set_node_b(picked_object)
 	
+func highlight():
+	# no highlight needed if object in hand
+	if (joint.get_node_b() != ""):
+		return
+	
+	# TODO: extract this in a function and reuse
+	var space_state = get_world().direct_space_state
+	var from = camera.global_transform.origin
+	var to = from + (camera.global_transform.basis.z * -1 * pickup_distance)
+	var result = space_state.intersect_ray(from, to, [self])
+	
+	if result:
+		var material = result.collider.get_node("MeshInstance").get_active_material(0)
+		if material:
+			material.emission_enabled = true
+			material.emission_energy = 0.5
+	
 func pickup():
 	if (!Input.is_action_just_pressed("interact")):
 		return
@@ -80,5 +97,6 @@ func throw():
 
 func _physics_process(delta):
 	move(delta)
+	highlight()
 	pickup()
 	throw()
