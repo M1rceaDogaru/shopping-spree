@@ -6,7 +6,8 @@ onready var joint = $Pivot/Camera/Hold/PinJoint
 var gravity = -30
 var max_speed = 8
 var mouse_sensitivity = 0.002  # radians/pixel
-var pickup_distance = 2
+var pickup_distance = 3
+var throw_force = 400
 
 var velocity = Vector3()
 
@@ -51,18 +52,33 @@ func attach_to_joint(collider):
 	joint.set_node_b(picked_object)
 	
 func pickup():
-	if (Input.is_action_just_pressed("interact")):
-		if (joint.get_node_b() != ""):
-			joint.set_node_b("")
-		else:
-			var space_state = get_world().direct_space_state
-			var from = camera.global_transform.origin
-			var to = from + (camera.global_transform.basis.z * -1 * pickup_distance)
-			var result = space_state.intersect_ray(from, to, [self])
-			
-			if result:
-				attach_to_joint(result.collider)
+	if (!Input.is_action_just_pressed("interact")):
+		return
+	
+	if (joint.get_node_b() != ""):
+		joint.set_node_b("")
+	else:
+		var space_state = get_world().direct_space_state
+		var from = camera.global_transform.origin
+		var to = from + (camera.global_transform.basis.z * -1 * pickup_distance)
+		var result = space_state.intersect_ray(from, to, [self])
+		
+		if result:
+			attach_to_joint(result.collider)
+				
+func throw():
+	if (!Input.is_action_just_pressed("throw")):
+		return
+	
+	# no object in hand to throw
+	if (joint.get_node_b() == ""):
+		return
+		
+	var object_in_hand = get_node(joint.get_node_b())
+	joint.set_node_b("")
+	object_in_hand.add_force(camera.global_transform.basis.z * -1 * throw_force, Vector3(0, 0, 0))
 
 func _physics_process(delta):
 	move(delta)
 	pickup()
+	throw()
