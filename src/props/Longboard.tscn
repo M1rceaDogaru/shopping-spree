@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://models/Items_Longboard_01.fbx" type="PackedScene" id=1]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.289019, 0.0518851, 1.02664 )
+
+[sub_resource type="CylinderShape" id=2]
+radius = 0.128117
+height = 0.701001
+
+[sub_resource type="CylinderShape" id=3]
+radius = 0.126744
+height = 0.68379
+
+[node name="Longboard" type="RigidBody"]
+
+[node name="Items_Longboard_01" parent="." instance=ExtResource( 1 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.103719, 0.00665021 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.0346536, -0.879045 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="."]
+transform = Transform( -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.0346536, 0.865668 )
+shape = SubResource( 3 )
