@@ -4,10 +4,11 @@ onready var camera = $Pivot/Camera
 onready var joint = $Pivot/Camera/Hold/PinJoint
 
 var gravity = -30
-var max_speed = 8
+var max_speed = 6
+var jump_height = 10
 var mouse_sensitivity = 0.002  # radians/pixel
-var pickup_distance = 3
-var throw_force = 400
+var pickup_distance = 4
+var throw_force = 800
 
 var velocity = Vector3()
 
@@ -63,10 +64,11 @@ func highlight():
 	var result = space_state.intersect_ray(from, to, [self])
 	
 	if result:
-		var material = result.collider.get_node("MeshInstance").get_active_material(0)
-		if material:
-			material.emission_enabled = true
-			material.emission_energy = 0.5
+		pass
+		#var material = result.collider.get_node("MeshInstance").get_active_material(0)
+		#if material:
+		#	material.emission_enabled = true
+		#	material.emission_energy = 0.5
 	
 func pickup():
 	if (!Input.is_action_just_pressed("interact")):
@@ -95,7 +97,12 @@ func throw():
 	joint.set_node_b("")
 	object_in_hand.add_force(camera.global_transform.basis.z * -1 * throw_force, Vector3(0, 0, 0))
 
+func jump():
+	if (Input.is_action_just_pressed("jump")):
+		velocity.y += jump_height
+
 func _physics_process(delta):
+	jump()
 	move(delta)
 	highlight()
 	pickup()
