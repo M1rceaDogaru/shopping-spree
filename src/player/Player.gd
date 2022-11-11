@@ -7,10 +7,11 @@ var gravity = -30
 var max_speed = 6
 var jump_height = 10
 var mouse_sensitivity = 0.002  # radians/pixel
-var pickup_distance = 4
+var pickup_distance = 2
 var throw_force = 800
 
 var velocity = Vector3()
+var highlighted: Node = null
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -49,8 +50,21 @@ func move(delta):
 	velocity = move_and_slide(velocity, Vector3.UP, true)
 	
 func attach_to_joint(collider):
+	collider.apply_torque_impulse(Vector3.LEFT)
 	var picked_object = collider.get_path()
 	joint.set_node_b(picked_object)
+	
+func set_highlight(value: bool):
+	if highlighted:
+		var outline = highlighted.find_node("Outline")
+		if outline:
+			outline.visible = value
+			
+func get_whatever_i_look_at():
+	var space_state = get_world().direct_space_state
+	var from = camera.global_transform.origin
+	var to = from + (camera.global_transform.basis.z * -1 * pickup_distance)
+	return space_state.intersect_ray(from, to, [self], 1)
 	
 func highlight():
 	# no highlight needed if object in hand
@@ -58,17 +72,14 @@ func highlight():
 		return
 	
 	# TODO: extract this in a function and reuse
-	var space_state = get_world().direct_space_state
-	var from = camera.global_transform.origin
-	var to = from + (camera.global_transform.basis.z * -1 * pickup_distance)
-	var result = space_state.intersect_ray(from, to, [self])
+	var result = get_whatever_i_look_at()
 	
 	if result:
-		pass
-		#var material = result.collider.get_node("MeshInstance").get_active_material(0)
-		#if material:
-		#	material.emission_enabled = true
-		#	material.emission_energy = 0.5
+		set_highlight(false)
+		highlighted = result.collider
+		set_highlight(true)
+	else:
+		set_highlight(false)
 	
 func pickup():
 	if (!Input.is_action_just_pressed("interact")):
@@ -77,10 +88,7 @@ func pickup():
 	if (joint.get_node_b() != ""):
 		joint.set_node_b("")
 	else:
-		var space_state = get_world().direct_space_state
-		var from = camera.global_transform.origin
-		var to = from + (camera.global_transform.basis.z * -1 * pickup_distance)
-		var result = space_state.intersect_ray(from, to, [self])
+		var result = get_whatever_i_look_at()
 		
 		if result:
 			attach_to_joint(result.collider)
