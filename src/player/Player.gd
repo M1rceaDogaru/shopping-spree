@@ -1,5 +1,8 @@
 extends KinematicBody
 
+signal item_picked_up(value)
+signal item_highlighted(value)
+
 onready var camera = $Pivot/Camera
 onready var joint = $Pivot/Camera/Hold/PinJoint
 
@@ -35,7 +38,7 @@ func get_input():
 	input_dir = input_dir.normalized()
 	return input_dir
 	
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		$Pivot.rotate_x(-event.relative.y * mouse_sensitivity)
@@ -53,12 +56,14 @@ func attach_to_joint(collider):
 	collider.apply_torque_impulse(Vector3.LEFT)
 	var picked_object = collider.get_path()
 	joint.set_node_b(picked_object)
+	emit_signal("item_picked_up", true)
 	
 func set_highlight(value: bool):
 	if highlighted:
 		var outline = highlighted.find_node("Outline")
 		if outline:
 			outline.visible = value
+			emit_signal("item_highlighted", value)
 			
 func get_whatever_i_look_at():
 	var space_state = get_world().direct_space_state
@@ -87,9 +92,9 @@ func pickup():
 	
 	if (joint.get_node_b() != ""):
 		joint.set_node_b("")
+		emit_signal("item_picked_up", false)
 	else:
 		var result = get_whatever_i_look_at()
-		
 		if result:
 			attach_to_joint(result.collider)
 				
