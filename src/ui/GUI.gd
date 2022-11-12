@@ -16,3 +16,13 @@ func on_item_highlighted(value):
 		$Throw.visible = false
 	else:
 		$Pickup.visible = false
+		
+func show_status(message):
+	$Status.text = message
+	$Status.visible = true
+	
+func hide_status():
+	$Status.visible = false
+	
+func set_time(value):
+	$Timer.text = str(stepify(value, 0.01))
