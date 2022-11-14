@@ -26,6 +26,9 @@ func get_input():
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
 		
+	if GameData.character_frozen:
+		return input_dir
+		
 	# desired move in camera direction
 	if Input.is_action_pressed("move_forward"):
 		input_dir += -global_transform.basis.z
@@ -111,6 +114,9 @@ func throw():
 	object_in_hand.add_force(camera.global_transform.basis.z * -1 * throw_force, Vector3(0, 0, 0))
 
 func jump():
+	if GameData.character_frozen:
+		return
+		
 	if (Input.is_action_just_pressed("jump")):
 		velocity.y += jump_height
 
