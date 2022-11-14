@@ -44,3 +44,4 @@ func pour_items(items):
 		yield(get_tree().create_timer(.2), "timeout")
 		item.translation = $EndSpawn.translation
 		item.visible = true
+		item.apply_torque_impulse(Vector3(rand_range(-1, 1), rand_range(-1, 1), rand_range(-1, 1)))
