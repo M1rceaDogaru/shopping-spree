@@ -25,4 +25,4 @@ func hide_status():
 	$Status.visible = false
 	
 func set_time(value):
-	$Timer.text = str(stepify(value, 0.01))
+	$Timer.text = "%1.2f" % value
