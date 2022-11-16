@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://props/Box.tscn" type="PackedScene" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://ui/GUI.tscn" type="PackedScene" id=32]
 [ext_resource path="res://store/Store.gd" type="Script" id=33]
 [ext_resource path="res://materials/floor.tres" type="Material" id=34]
+[ext_resource path="res://music/extremeaction.mp3" type="AudioStream" id=35]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 35.3085, 1, 26.514 )
@@ -188,6 +189,10 @@ transform = Transform( -2.55223e-08, -0.811839, 0.583881, -3.54866e-08, 0.583881
 
 [node name="EndSpawn" type="Spatial" parent="."]
 transform = Transform( -2.55223e-08, -0.811839, 0.583881, -3.54866e-08, 0.583881, 0.811839, -1, 0, -4.37114e-08, -8.4428, 10.7076, 0 )
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 35 )
+autoplay = true
 
 [connection signal="item_highlighted" from="Player" to="GUI" method="on_item_highlighted"]
 [connection signal="item_picked_up" from="Player" to="GUI" method="on_item_picked_up"]

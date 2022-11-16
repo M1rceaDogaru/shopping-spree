@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/extremeaction.mp3-fb3e1673222da363f56760359f29a219.mp3str"
+
+[deps]
+
+source_file="res://music/extremeaction.mp3"
+dest_files=[ "res://.import/extremeaction.mp3-fb3e1673222da363f56760359f29a219.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
