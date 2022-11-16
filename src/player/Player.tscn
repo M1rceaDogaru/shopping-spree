@@ -6,6 +6,7 @@
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
+height = 2.0
 
 [node name="Player" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -15,13 +16,13 @@ transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0
 shape = SubResource( 1 )
 
 [node name="Pivot" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.664302, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19095, 0 )
 
 [node name="Camera" type="Camera" parent="Pivot"]
 current = true
 
 [node name="Hold" type="Position3D" parent="Pivot/Camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00969166, -1.74672 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00969172, -1.92971 )
 
 [node name="StaticBody" type="StaticBody" parent="Pivot/Camera/Hold"]
 collision_layer = 8

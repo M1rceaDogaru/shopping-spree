@@ -10,7 +10,7 @@ var gravity = -30
 var max_speed = 6
 var jump_height = 10
 var mouse_sensitivity = 0.002  # radians/pixel
-var pickup_distance = 2
+var pickup_distance = 3
 var throw_force = 800
 
 var velocity = Vector3()
@@ -45,7 +45,7 @@ func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		$Pivot.rotate_x(-event.relative.y * mouse_sensitivity)
-		$Pivot.rotation.x = clamp($Pivot.rotation.x, -1.2, 1.2)
+		$Pivot.rotation.x = clamp($Pivot.rotation.x, -1.5, 1.5)
 		
 func move(delta):
 	velocity.y += gravity * delta

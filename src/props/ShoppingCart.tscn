@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://prefabs/SI_Prop_ShoppingTrolley_01.tscn" type="PackedScene" id=1]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.0312358, 0.412563, 0.960776 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 0.0312358, 0.412563, 0.960776 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.0367699, 0.798281, 0.657153 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.0367699, 0.942574, 0.588376 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 0.106934, 0.942574, 0.516245 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 0.0367699, 0.352636, 0.4926 )
+
+[node name="ShoppingCart" type="RigidBody"]
+mass = 2.0
+
+[node name="SI_Prop_ShoppingTrolley_01" parent="." instance=ExtResource( 1 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.996933, -0.00193245, -0.0782364, -0.00483654, 0.996263, -0.0862378, 0.0781107, 0.0863517, 0.993198, 0.546774, 1.09398, 0.074672 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 0.997079, 0.0113786, 0.0755314, -0.00483654, 0.996263, -0.0862378, -0.0762304, 0.0856205, 0.993407, -0.531416, 1.09398, 0.074672 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="."]
+transform = Transform( -0.00237112, 0.00583335, -0.99998, -0.00202376, 0.999981, 0.00583813, 0.999995, 0.00203756, -0.00235926, 0.00387943, 0.796766, -0.752219 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="."]
+transform = Transform( -0.00237112, 0.00583335, -0.99998, 0.99907, -0.0430303, -0.00261997, -0.0430447, -0.999057, -0.00572588, 0.00387943, 0.750868, 0.0913895 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="."]
+transform = Transform( -0.00237112, 0.00583335, -0.99998, 0.999993, 0.00296252, -0.00235386, 0.00294874, -0.999979, -0.00584031, 0.00387943, 0.143134, 0.133695 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="."]
+transform = Transform( -0.00237112, 0.00583335, -0.99998, -0.00202376, 0.999981, 0.00583813, 0.999995, 0.00203756, -0.00235926, 0.00387943, 1.06268, 1.02292 )
+shape = SubResource( 6 )
