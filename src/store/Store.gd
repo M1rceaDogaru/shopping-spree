@@ -18,16 +18,19 @@ func _process(delta):
 		GameData.current_game_duration -= delta
 		$GUI.set_time(GameData.current_game_duration)
 		if GameData.current_game_duration <= 0.0:
-			end_game()
+			end_game(false)
 	elif Input.is_action_just_pressed("ui_accept"):
 		get_tree().reload_current_scene()
 			
-func end_game():
+func end_game(has_checkout):
 	GameData.game_is_running = false
 	GameData.character_frozen = true
-	var items_checked_out = $Checkout.get_overlapping_bodies()
-	$GUI.show_status("You're out of time. You got %1d items. Press ENTER to retry." % items_checked_out.size())
-	pour_items(items_checked_out)
+	if has_checkout:
+		var items_checked_out = $Checkout.get_overlapping_bodies()
+		$GUI.show_status("Good job. You got %1d items. Press ENTER to retry." % items_checked_out.size())
+		pour_items(items_checked_out)
+	else:
+		$GUI.show_status("Oh no! Checkout has been closed. Press ENTER to retry.")
 
 func pour_items(items):
 	for item in items:
@@ -45,3 +48,8 @@ func pour_items(items):
 		item.translation = $EndSpawn.translation
 		item.visible = true
 		item.apply_torque_impulse(Vector3(rand_range(-1, 1), rand_range(-1, 1), rand_range(-1, 1)))
+
+
+func _on_Checkout_body_entered(body):
+	if body == $Player:
+		end_game(true)
