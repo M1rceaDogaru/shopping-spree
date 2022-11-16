@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://player/Player.gd" type="Script" id=1]
+[ext_resource path="res://music/grab.wav" type="AudioStream" id=2]
+[ext_resource path="res://music/throw.wav" type="AudioStream" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -28,3 +30,9 @@ input_ray_pickable = false
 
 [node name="PinJoint" type="PinJoint" parent="Pivot/Camera/Hold"]
 nodes/node_a = NodePath("../StaticBody")
+
+[node name="Grab" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+
+[node name="Throw" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )

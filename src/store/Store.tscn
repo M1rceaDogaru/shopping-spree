@@ -192,6 +192,7 @@ transform = Transform( -2.55223e-08, -0.811839, 0.583881, -3.54866e-08, 0.583881
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 35 )
+volume_db = -15.0
 autoplay = true
 
 [connection signal="item_highlighted" from="Player" to="GUI" method="on_item_highlighted"]

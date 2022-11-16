@@ -100,6 +100,7 @@ func pickup():
 		var result = get_whatever_i_look_at()
 		if result:
 			attach_to_joint(result.collider)
+			$Grab.play()
 				
 func throw():
 	if (!Input.is_action_just_pressed("throw")):
@@ -112,6 +113,7 @@ func throw():
 	var object_in_hand = get_node(joint.get_node_b())
 	joint.set_node_b("")
 	object_in_hand.add_force(camera.global_transform.basis.z * -1 * throw_force, Vector3(0, 0, 0))
+	$Throw.play()
 
 func jump():
 	if GameData.character_frozen:
