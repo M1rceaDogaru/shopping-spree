@@ -1,7 +1,7 @@
 extends Node
 
 # Config variables
-var game_duration = 5
+var game_duration = 240
 
 # State variables
 var game_is_running: bool = false

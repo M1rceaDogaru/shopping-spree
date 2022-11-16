@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://models/Items_FryPan_01.fbx" type="PackedScene" id=1]
+[ext_resource path="res://prefabs/Items_FryPan_01.tscn" type="PackedScene" id=1]
 
 [sub_resource type="CylinderShape" id=1]
 radius = 0.384458
