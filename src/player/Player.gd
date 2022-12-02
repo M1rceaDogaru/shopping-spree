@@ -56,7 +56,13 @@ func move(delta):
 	velocity = move_and_slide(velocity, Vector3.UP, true)
 	
 func attach_to_joint(collider):
-	collider.apply_torque_impulse(Vector3.LEFT)
+	var layer = collider.get_collision_layer()
+	if layer > 1:
+		# snap object to holding node. Offers better stability but only for small objects
+		collider.global_transform.origin = joint.global_transform.origin
+		
+	# give it a bump to wake rigidbody from sleep
+	collider.apply_torque_impulse(Vector3.LEFT * 0.001)
 	var picked_object = collider.get_path()
 	joint.set_node_b(picked_object)
 	emit_signal("item_picked_up", true)

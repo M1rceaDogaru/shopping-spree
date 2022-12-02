@@ -11,6 +11,7 @@ radius = 0.084499
 height = 0.327935
 
 [node name="Banana" type="RigidBody"]
+collision_layer = 3
 
 [node name="Items_Banana_02" parent="." instance=ExtResource( 1 )]
 

@@ -66,6 +66,7 @@ shape = SubResource( 1 )
 [node name="MeshInstance" type="MeshInstance" parent="Floor"]
 transform = Transform( 36.2628, 0, 0, 0, 1, 0, 0, 0, 27.1313, 0, 0, 0 )
 mesh = SubResource( 2 )
+material/0 = null
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 6.21757, 0 )
@@ -182,6 +183,7 @@ shape = SubResource( 3 )
 [node name="MeshInstance" type="MeshInstance" parent="Checkout"]
 transform = Transform( 4.30317, 0, 0, 0, 1, 0, 0, 0, 20.0005, 0, -2.4524, 0 )
 mesh = SubResource( 5 )
+material/0 = null
 
 [node name="EndCamera" type="Camera" parent="."]
 transform = Transform( -2.55223e-08, -0.811839, 0.583881, -3.54866e-08, 0.583881, 0.811839, -1, 0, -4.37114e-08, -4.42664, 5.30543, 0 )

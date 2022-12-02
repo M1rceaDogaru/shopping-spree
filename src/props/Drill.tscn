@@ -9,6 +9,7 @@ extents = Vector3( 0.08921, 0.103706, 0.434133 )
 extents = Vector3( 0.0843714, 0.283586, 0.13574 )
 
 [node name="Drill" type="RigidBody"]
+collision_layer = 3
 
 [node name="Items_Drill_01" parent="." instance=ExtResource( 1 )]
 

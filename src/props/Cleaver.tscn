@@ -9,6 +9,7 @@ extents = Vector3( 0.202888, 0.0308743, 0.302892 )
 extents = Vector3( 0.0596182, 0.0394968, 0.207088 )
 
 [node name="Cleaver" type="RigidBody"]
+collision_layer = 3
 
 [node name="Items_Cleaver_01" parent="." instance=ExtResource( 1 )]
 

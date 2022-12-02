@@ -31,6 +31,7 @@ surfaces/0 = {
 }
 
 [node name="Box" type="RigidBody"]
+collision_layer = 3
 physics_material_override = SubResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
@@ -43,3 +44,4 @@ material/0 = SubResource( 3 )
 [node name="Outline" type="MeshInstance" parent="MeshInstance"]
 visible = false
 mesh = SubResource( 6 )
+material/0 = null

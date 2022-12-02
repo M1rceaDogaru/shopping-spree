@@ -6,6 +6,7 @@
 extents = Vector3( 0.138945, 0.0520164, 0.527853 )
 
 [node name="Wrench" type="RigidBody"]
+collision_layer = 3
 
 [node name="Items_Wrench_01" parent="." instance=ExtResource( 1 )]
 
