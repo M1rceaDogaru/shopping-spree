@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://prefabs/SI_Prop_Shelf_04.tscn" type="PackedScene" id=1]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 2.31431, 0.0450334, 0.753299 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 2.31431, 0.0450334, 0.753299 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 2.31431, 0.0450334, 0.753299 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.0655932, 1.57277, 0.0699939 )
+
+[sub_resource type="BoxShape" id=5]
+extents = Vector3( 0.0655932, 1.57277, 0.0699939 )
+
+[sub_resource type="BoxShape" id=6]
+extents = Vector3( 0.0655932, 1.57277, 0.0699939 )
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 0.0655932, 1.57277, 0.0699939 )
+
+[node name="Shelf" type="RigidBody"]
+mass = 10.0
+
+[node name="SI_Prop_Shelf_04" parent="." instance=ExtResource( 1 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.624651, 0.0080955 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.77758, 0.0080955 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8948, 0.0080955 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape4" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.03321, 1.56494, 0.569563 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape5" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.03321, 1.56494, -0.601482 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape6" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05145, 1.56494, -0.601482 )
+shape = SubResource( 6 )
+
+[node name="CollisionShape7" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05145, 1.56494, 0.569317 )
+shape = SubResource( 7 )

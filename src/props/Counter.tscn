@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://prefabs/SI_Prop_CheckoutCounter_01.tscn" type="PackedScene" id=1]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 3.87076, 0.825469, 1 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1.43032, 1.21875, 0.53909 )
+
+[sub_resource type="BoxShape" id=3]
+extents = Vector3( 0.490177, 0.535953, 0.144503 )
+
+[node name="Counter" type="StaticBody"]
+
+[node name="SI_Prop_CheckoutCounter_01" parent="." instance=ExtResource( 1 )]
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.766583, -0.585582 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.23854, 1.23069, 0.941163 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape3" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.190251, 2.05149, -1.17103 )
+shape = SubResource( 3 )

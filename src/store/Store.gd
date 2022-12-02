@@ -27,21 +27,27 @@ func end_game(has_checkout):
 	GameData.character_frozen = true
 	if has_checkout:
 		var items_checked_out = $Checkout.get_overlapping_bodies()
-		$GUI.show_status("Good job. You got %1d items. Press ENTER to retry." % items_checked_out.size())
+		var number_of_items = 0
+		for item in items_checked_out:
+			if item.get_collision_layer() > 10:
+				continue
+			number_of_items += 1
+		
+		$GUI.show_status("Good job. You got %1d items. Press ENTER to retry." % number_of_items)
 		pour_items(items_checked_out)
 	else:
 		$GUI.show_status("Oh no! Checkout has been closed. Press ENTER to retry.")
 
 func pour_items(items):
 	for item in items:
-		if item == $Player or item == $Floor:
+		if item.get_collision_layer() > 10:
 			continue
 		item.visible = false
 		
 	$EndCamera.current = true
 	
 	for item in items:
-		if item == $Player or item == $Floor:
+		if item.get_collision_layer() > 10:
 			continue
 		
 		yield(get_tree().create_timer(.2), "timeout")
