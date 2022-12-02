@@ -17,13 +17,14 @@ var velocity = Vector3()
 var highlighted: Node = null
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	pass
 
 func get_input():
 	var input_dir = Vector3()
 	
 	# handle exit request
 	if Input.is_action_just_pressed("exit"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		get_tree().quit()
 		
 	if GameData.character_frozen:
@@ -42,10 +43,12 @@ func get_input():
 	return input_dir
 	
 func _input(event):
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		$Pivot.rotate_x(-event.relative.y * mouse_sensitivity)
 		$Pivot.rotation.x = clamp($Pivot.rotation.x, -1.5, 1.5)
+	elif event is InputEventMouseButton:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		
 func move(delta):
 	velocity.y += gravity * delta
