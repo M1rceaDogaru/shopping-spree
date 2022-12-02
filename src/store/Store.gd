@@ -1,5 +1,7 @@
 extends Spatial
 
+var round_ended = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	GameData.current_game_duration = GameData.game_duration
@@ -19,12 +21,14 @@ func _process(delta):
 		$GUI.set_time(GameData.current_game_duration)
 		if GameData.current_game_duration <= 0.0:
 			end_game(false)
-	elif Input.is_action_just_pressed("ui_accept"):
+	elif Input.is_action_just_pressed("ui_accept") and round_ended:
 		get_tree().reload_current_scene()
 			
 func end_game(has_checkout):
 	GameData.game_is_running = false
 	GameData.character_frozen = true
+	round_ended = true
+	
 	if has_checkout:
 		var items_checked_out = $Checkout.get_overlapping_bodies()
 		var number_of_items = 0

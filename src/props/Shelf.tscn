@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://prefabs/SI_Prop_Shelf_04.tscn" type="PackedScene" id=1]
+[ext_resource path="res://materials/ShelfPhysicsMaterial.tres" type="PhysicsMaterial" id=2]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 2.31431, 0.0450334, 0.753299 )
@@ -25,6 +26,7 @@ extents = Vector3( 0.0655932, 1.57277, 0.0699939 )
 
 [node name="Shelf" type="RigidBody"]
 mass = 10.0
+physics_material_override = ExtResource( 2 )
 
 [node name="SI_Prop_Shelf_04" parent="." instance=ExtResource( 1 )]
 
