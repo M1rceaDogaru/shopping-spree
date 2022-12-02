@@ -37,10 +37,10 @@ func end_game(has_checkout):
 				continue
 			number_of_items += 1
 		
-		$GUI.show_status("Good job. You got %1d items. Press ENTER to retry." % number_of_items)
+		$GUI.show_status("Good job. You got %1d items. Press ENTER/SPACE to retry." % number_of_items)
 		pour_items(items_checked_out)
 	else:
-		$GUI.show_status("Oh no! Checkout has been closed. Press ENTER to retry.")
+		$GUI.show_status("Oh no! Checkout has been closed. Press ENTER/SPACE to retry.")
 
 func pour_items(items):
 	for item in items:
